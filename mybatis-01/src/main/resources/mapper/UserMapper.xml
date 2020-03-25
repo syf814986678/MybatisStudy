@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的mapper接口-->
+<mapper namespace="com.shiyifan.dao.UserMapper">
+    <!--id就是对应namespace中的方法名-->
+    <!--resultType就是sql语句执行的返回值-->
+    <select id="getUserList" resultType="com.shiyifan.pojo.User">
+        select * from mybatis;
+    </select>
+
+
+    <select id="getUserById" parameterType="int" resultType="com.shiyifan.pojo.User">
+        select * from mybatis where id= #{id};
+    </select>
+
+
+    <!--增加用户-->
+    <!--对象中的属性可以直接取出来-->
+    <insert id="addUser" parameterType="com.shiyifan.pojo.User">
+        insert into mybatis values (#{id},#{username},#{pwd});
+    </insert>
+
+
+    <!--更新用户-->
+    <update id="updateUser" parameterType="com.shiyifan.pojo.User">
+        update mybatis set username = #{username},pwd=#{pwd} where id =#{id} ;
+     </update>
+
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="int">
+        delete from mybatis where id =#{id};
+    </delete>
+</mapper>
